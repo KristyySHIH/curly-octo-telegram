@@ -1,0 +1,20 @@
+function textSimilarity3(text1, text2) {
+  function preprocess(text) {
+    var tokens = text.split('');
+    return tokens;
+  }
+
+  function calculateSimilarity(tokens1, tokens2) {
+    var intersection = new Set(tokens1.filter(token => tokens2.includes(token)));
+    var union = new Set([...tokens1, ...tokens2]);
+    var similarity = intersection.size / union.size;
+    return similarity;
+  }
+
+  var tokens1 = preprocess(text1);
+  var tokens2 = preprocess(text2);
+  var similarity = calculateSimilarity(tokens1, tokens2);
+  
+  var result = similarity >= 0.3 ? "相同" : "不相同";
+  return result;
+}
